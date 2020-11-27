@@ -37,7 +37,7 @@ class Var:
         return self * other ** -1
 
     def __repr__(self):
-        return "Value(v=%f, grad=%f)" % (self.v, self.grad)
+        return "Var(v=%.4f, grad=%.4f)" % (self.v, self.grad)
 
     def relu(self):
         return Var(self.v if self.v > 0.0 else 0.0, lambda: [(self, 1.0 if self.v > 0.0 else 0.0)])
