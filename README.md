@@ -1,10 +1,7 @@
 # nanograd
-A cute little implementation of reverse mode auto-differentiation in ~40 lines of python.
+A minimal implementation of reverse mode auto-differentiation in ~40 lines of python.
 
 May be useful for educational purposes. 
-
-![cute bug](cute.jpg)
-<small>Image by [Andy Reago & Chrissy McClarren](https://www.flickr.com/photos/wildreturn/20309009618/in/photostream/) - [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)</small>
 
 #### Example
 ```python
