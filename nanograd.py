@@ -1,10 +1,13 @@
+from typing import Union
+
+
 class Var:
     """
     A variable which holds a float and enables gradient computations.
     """
 
-    def __init__(self, val: float, grad_fn=lambda: []):
-        assert type(val) == float
+    def __init__(self, val: Union[float, int], grad_fn=lambda: []):
+        assert type(val) in {float, int}
         self.v = val
         self.grad_fn = grad_fn
         self.grad = 0.0
@@ -23,7 +26,7 @@ class Var:
     def __mul__(self: 'Var', other: 'Var') -> 'Var':
         return Var(self.v * other.v, lambda: [(self, other.v), (other, self.v)])
 
-    def __pow__(self, power):
+    def __pow__(self, power) -> 'Var':
         assert type(power) in {float, int}, "power must be float or int"
         return Var(self.v ** power, lambda: [(self, power * self.v ** (power - 1))])
 
@@ -39,5 +42,5 @@ class Var:
     def __repr__(self):
         return "Var(v=%.4f, grad=%.4f)" % (self.v, self.grad)
 
-    def relu(self):
+    def relu(self) -> 'Var':
         return Var(self.v if self.v > 0.0 else 0.0, lambda: [(self, 1.0 if self.v > 0.0 else 0.0)])
